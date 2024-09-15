@@ -1,8 +1,6 @@
 #include <iostream>
-#include <fstream>
+#include <fstream> 
 #include <sstream>
-// #include <string>
-#include <cstdlib>   //remove and rename
 #include <windows.h> // for sleep
 #include <cctype>    // make alphabet lower order
 
@@ -18,8 +16,8 @@ const string BLACK = "\033[40m";
 const string WHITE = "\033[47m";
 const string BOLD = "\033[1m";
 
-const string SHOPKEEPER_ID = "paras";
-const string SHOPKEEPER_PASSWORD = "paras123";
+const string Shopkeeper_id = "1818";
+const string Shopkeeper_pw = "paras123";
 
 class Item
 {
@@ -89,7 +87,7 @@ bool shopkeeperLogin() // login function for shopkeeper only
         c = tolower(c); // make user password in lower alphabet
     }
 
-    return (id == SHOPKEEPER_ID && password == SHOPKEEPER_PASSWORD); // check the id and pw
+    return (id == Shopkeeper_id && password == Shopkeeper_pw); // check the id and pw
 }
 
 void addItem(Item &i) // for shopkeeper add item in supermarket
@@ -202,38 +200,6 @@ void addItem(Item &i) // for shopkeeper add item in supermarket
         }
     }
 }
-void generateAndPrintQrCode() // Qr function for payment
-{
-    const int SIZE = 17;
-    char qrCode[SIZE][SIZE] = {
-        {'#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#'},
-        {'#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#', '#'},
-        {'#', ' ', '#', '#', ' ', '#', '#', '#', '#', '#', '#', ' ', ' ', '#', '#'},
-        {'#', ' ', '#', ' ', ' ', ' ', '#', ' ', ' ', '#', ' ', ' ', ' ', '#', '#'},
-        {'#', ' ', '#', ' ', '#', '#', '#', ' ', '#', '#', ' ', '#', ' ', '#', '#'},
-        {'#', ' ', '#', ' ', ' ', ' ', '#', ' ', ' ', '#', ' ', ' ', ' ', '#', '#'},
-        {'#', ' ', '#', '#', '#', '#', ' ', '#', ' ', '#', '#', ' ', ' ', '#', '#'},
-        {'#', ' ', '#', ' ', ' ', ' ', '#', ' ', ' ', ' ', ' ', ' ', ' ', '#', '#'},
-        {'#', ' ', '#', '#', '#', '#', '#', '#', '#', '#', '#', ' ', ' ', '#', '#'},
-        {'#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#'},
-        {'#', ' ', '#', '#', '#', '#', '#', '#', '#', '#', '#', ' ', ' ', ' ', '#'},
-        {'#', ' ', '#', ' ', ' ', ' ', '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#'},
-        {'#', ' ', '#', ' ', '#', '#', '#', '#', '#', '#', '#', ' ', ' ', ' ', '#'},
-        {'#', ' ', '#', ' ', '#', ' ', ' ', ' ', ' ', ' ', '#', ' ', ' ', ' ', '#'},
-        {'#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#'}};
-
-    for (int y = 0; y < SIZE; ++y)
-    {
-        for (int x = 0; x < SIZE; ++x)
-        {
-            if (qrCode[y][x] == '#')
-                cout << BLACK << "  " << RESET;
-            else
-                cout << WHITE << "  " << RESET;
-        }
-        cout << endl;
-    }
-}
 void listItems() // list function for list the item which is available in this supermarket
 {
     ifstream inFile("StoreItem.txt"); // open file in read mode
@@ -270,6 +236,38 @@ void listItems() // list function for list the item which is available in this s
     inFile.close(); // close the file
 }
 
+void generateAndPrintQrCode() // Qr function for payment
+{
+    const int SIZE = 17;
+    char qrCode[SIZE][SIZE] = {
+        {'#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#'},
+        {'#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#', '#'},
+        {'#', ' ', '#', '#', ' ', '#', '#', '#', '#', '#', '#', ' ', ' ', '#', '#'},
+        {'#', ' ', '#', ' ', ' ', ' ', '#', ' ', ' ', '#', ' ', ' ', ' ', '#', '#'},
+        {'#', ' ', '#', ' ', '#', '#', '#', ' ', '#', '#', ' ', '#', ' ', '#', '#'},
+        {'#', ' ', '#', ' ', ' ', ' ', '#', ' ', ' ', '#', ' ', ' ', ' ', '#', '#'},
+        {'#', ' ', '#', '#', '#', '#', ' ', '#', ' ', '#', '#', ' ', ' ', '#', '#'},
+        {'#', ' ', '#', ' ', ' ', ' ', '#', ' ', ' ', ' ', ' ', ' ', ' ', '#', '#'},
+        {'#', ' ', '#', '#', '#', '#', '#', '#', '#', '#', '#', ' ', ' ', '#', '#'},
+        {'#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#'},
+        {'#', ' ', '#', '#', '#', '#', '#', '#', '#', '#', '#', ' ', ' ', ' ', '#'},
+        {'#', ' ', '#', ' ', ' ', ' ', '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#'},
+        {'#', ' ', '#', ' ', '#', '#', '#', '#', '#', '#', '#', ' ', ' ', ' ', '#'},
+        {'#', ' ', '#', ' ', '#', ' ', ' ', ' ', ' ', ' ', '#', ' ', ' ', ' ', '#'},
+        {'#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#'}};
+
+    for (int y = 0; y < SIZE; ++y)
+    {
+        for (int x = 0; x < SIZE; ++x)
+        {
+            if (qrCode[y][x] == '#')
+                cout << BLACK << "  " << RESET;
+            else
+                cout << WHITE << "  " << RESET;
+        }
+        cout << endl;
+    }
+}
 void Customer_menu() // customer function for buy the things in this super market
 {
     system("cls");
@@ -309,7 +307,7 @@ void Customer_menu() // customer function for buy the things in this super marke
                 c = tolower(c);
             }
             cout << endl;
-            ifstream in("StoreItem.txt");       // open file in read mode
+            ifstream in("StoreItem.txt");  // open file in read mode
             ofstream out("TempStore.txt"); // temporary file open in write mode
 
             string line;
@@ -356,7 +354,7 @@ void Customer_menu() // customer function for buy the things in this super marke
                     }
                     else
                     {
-                        cout << YELLOW << "\t Sorry " << item << " Ended! " << RESET << endl;
+                        cout << YELLOW << "\t Sorry " << item << " Insufficient!" << RESET << endl;
                         out << line << endl;
                     }
                 }
@@ -371,8 +369,8 @@ void Customer_menu() // customer function for buy the things in this super marke
                 cout << RED << "\t Item Not Available!" << RESET << endl;
             }
 
-            out.close();                         // close temporary file
-            in.close();                          // close bill file
+            out.close();                              // close temporary file
+            in.close();                               // close bill file
             remove("StoreItem.txt");                  // remove the bill file
             rename("TempStore.txt", "StoreItem.txt"); // rename the temp file to bill.txt
         }
@@ -405,11 +403,23 @@ void Customer_menu() // customer function for buy the things in this super marke
                     cout << GREEN << "\n\tYou chose to pay by Cash." << RESET << endl
                          << endl;
                     ;
-                    Sleep(2000);
+                    cout << BLUE << GREEN << "   Total Bill -------------------- : " << count << BLUE << RESET << endl;
 
-                    cout << YELLOW << "Thanks for buying! See you next time." << RESET << endl
-                         << endl;
-                    ;
+                    int amount;
+                    cout << CYAN << "Enter payment amount: " << RESET;
+                    cin >> amount;
+                    cout << endl;
+                    if (amount == count)
+                    {
+                        cout << RED << "Payment successfull  RS " << RESET << amount << endl;
+                        cout << YELLOW << "Thanks for buying! See you next time." << RESET << endl
+                             << endl;
+                    }
+                    else
+                    {
+                        cout << "You enter less or more money" << endl;
+                    }
+
                     Sleep(2000);
 
                     cout << BLUE << "Back To Customer Section..." << RESET << endl
@@ -425,16 +435,25 @@ void Customer_menu() // customer function for buy the things in this super marke
                     cout << endl;
 
                     generateAndPrintQrCode(); // print QR code
-
-                    Sleep(5000);
                     cout << endl;
-                    cout << GREEN << "Payment successful!" << RESET << endl
-                         << endl;
-                    ;
+                    cout << endl;
+                    cout << BLUE << GREEN << "Total Bill -------------------- : " << count << BLUE << RESET << endl;
+                    int amount;
+                    cout << CYAN << "Enter payment amount: " << RESET;
+                    cin >> amount;
+                    cout << endl;
+                    if (amount >= count)
+                    {
+                        cout << RED << "Payment successfull  RS " << RESET << amount << endl;
+                        cout << YELLOW << "Thanks for buying!" << RESET << endl
+                             << endl;
+                    }
+                    else
+                    {
+                        cout << "You enter less or more money" << endl;
+                    }
                     Sleep(3000);
 
-                    cout << YELLOW << "Thanks for buying, see you next time!" << RESET << endl
-                         << endl;
                     cout << BLUE << "Back To Customer Section...." << RESET << endl;
 
                     Sleep(3000);
@@ -507,7 +526,10 @@ int main()
         }
         else if (choice == 3)
         {
-            cout << CYAN << "Exiting program..." << RESET << endl;
+            cout << endl;
+            cout << YELLOW << "Thank you for using the Supermarket System. Goodbye!" << RESET << endl;
+            cout << endl;
+            cout << endl;
             Sleep(2000);
             break;
         }
