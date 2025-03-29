@@ -18,7 +18,7 @@ This is a **Supermarket Management System** built in **C++**, designed to help s
 ## Installation & Usage
 1. **Clone the repository:**
    ```sh
-   git clone https://github.com/your-repo/supermarket-management.git
+   git clone https://github.com/paras-bista/Super-Market-project-
    ```
 2. **Compile the program:**
    ```sh
